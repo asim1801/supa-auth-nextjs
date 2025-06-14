@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/auth/AuthGuard.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1749927432988,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1749927432988,
+            "name": "Commit-0",
+            "content": "'use client'\n\nimport React, { useEffect } from 'react';\nimport { useRouter, usePathname } from 'next/navigation';\nimport { useAuth } from '@/lib/auth';\nimport { authConfig } from '@/config/auth';\n\ninterface AuthGuardProps {\n  children: React.ReactNode;\n  requireAuth?: boolean;\n  requireEmailVerification?: boolean;\n  fallbackPath?: string;\n  loadingComponent?: React.ReactNode;\n}\n\nexport function AuthGuard({ \n  children, \n  requireAuth = true,\n  requireEmailVerification = false,\n  fallbackPath,\n  loadingComponent\n}: AuthGuardProps) {\n  const { user, isSignedIn, isLoaded } = useAuth();\n  const router = useRouter();\n  const pathname = usePathname();\n\n  useEffect(() => {\n    if (!isLoaded) return;\n\n    // Redirect if auth is required but user is not signed in\n    if (requireAuth && !isSignedIn) {\n      const redirectPath = fallbackPath || authConfig.auth.redirectAfterSignOut;\n      router.push(`${redirectPath}?from=${encodeURIComponent(pathname || '')}`);\n      return;\n    }\n\n    // Redirect if user is signed in but auth is not required\n    if (!requireAuth && isSignedIn) {\n      const redirectPath = fallbackPath || authConfig.auth.redirectAfterSignIn;\n      router.push(redirectPath);\n      return;\n    }\n  }, [isLoaded, isSignedIn, requireAuth, fallbackPath, router, pathname]);\n\n  // Show loading component while auth is loading\n  if (!isLoaded) {\n    return loadingComponent || (\n      <div className=\"flex items-center justify-center min-h-screen\">\n        <div className=\"animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900\"></div>\n      </div>\n    );\n  }\n\n  // Don't render children if redirecting\n  if (requireAuth && !isSignedIn) {\n    return (\n      <div className=\"flex items-center justify-center min-h-screen\">\n        <div className=\"animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900\"></div>\n      </div>\n    );\n  }\n\n  if (!requireAuth && isSignedIn) {\n    return (\n      <div className=\"flex items-center justify-center min-h-screen\">\n        <div className=\"animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900\"></div>\n      </div>\n    );\n  }\n\n  // Check email verification if required\n  if (requireEmailVerification && user && !user.emailVerified) {\n    return (\n      <div className=\"flex items-center justify-center min-h-screen\">\n        <div className=\"text-center\">\n          <h2 className=\"text-xl font-semibold mb-2\">Email Verification Required</h2>\n          <p className=\"text-muted-foreground\">Please verify your email to continue.</p>\n        </div>\n      </div>\n    );\n  }\n\n  return <>{children}</>;\n}\n"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "next.config.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1749927432988,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1749927432988,
+            "name": "Commit-0",
+            "content": "/** @type {import('next').NextConfig} */\r\nconst nextConfig = {\r\n  images: {\r\n    domains: [],\r\n  },\r\n}\r\n\r\nmodule.exports = nextConfig "
+        }
+    ]
+}
