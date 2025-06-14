@@ -5,6 +5,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  basePath: '/supa-auth-nextjs',
+  assetPrefix: '/supa-auth-nextjs/',
   experimental: {
     optimizePackageImports: ['lucide-react'],
   },
