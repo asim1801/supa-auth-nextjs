@@ -167,6 +167,33 @@ I welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) fo
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 🚀 Live Demo
+
+🌐 **[View Live Demo](https://asim1801.github.io/supa-auth-nextjs/)**
+
+Experience Supauth in action with our live demonstration.
+
+## 📱 Deployment
+
+### GitHub Pages (Automatic)
+Every push to the `main` branch automatically deploys to GitHub Pages via GitHub Actions.
+
+### Manual Deployment
+```bash
+# Build and deploy to GitHub Pages
+npm run deploy
+
+# Or deploy to your own hosting
+npm run build
+# Upload the 'out' folder to your hosting provider
+```
+
+### Vercel Deployment
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/asim1801/supa-auth-nextjs)
+
+### Netlify Deployment
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/asim1801/supa-auth-nextjs)
+
 ## 🆘 Support
 
 - 📖 [Documentation](https://github.com/asim1801/supa-auth-nextjs/wiki)

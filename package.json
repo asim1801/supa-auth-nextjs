@@ -8,6 +8,7 @@
     "type": "git",
     "url": "https://github.com/asim1801/supa-auth-nextjs"
   },
+  "homepage": "https://asim1801.github.io/supa-auth-nextjs",
   "keywords": [
     "authentication",
     "nextjs",
@@ -27,6 +28,9 @@
     "setup": "node scripts/setup.js",
     "migrate": "npx supabase db push",
     "db:generate-types": "npx supabase gen types typescript --local > src/types/database.types.ts",
+    "export": "next build && next export",
+    "deploy": "npm run build && gh-pages -d out",
+    "predeploy": "npm run build",
     "postinstall": "echo '✅ Installation complete! Run npm run dev to start the development server.'"
   },
   "dependencies": {
@@ -91,6 +95,7 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^9.9.0",
     "eslint-config-next": "^15.0.0",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.11",
     "typescript": "^5.5.3"
