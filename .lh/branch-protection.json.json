@@ -1,0 +1,22 @@
+{
+    "sourceFile": "branch-protection.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1749928841213,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1749929761288,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,1 @@\n-{\r\n-  \"required_status_checks\": {\r\n-    \"strict\": true,\r\n-    \"contexts\": [\"test\", \"security-audit\"]\r\n-  },\r\n-  \"enforce_admins\": true,\r\n-  \"required_pull_request_reviews\": {\r\n-    \"required_approving_review_count\": 1,\r\n-    \"dismiss_stale_reviews\": true,\r\n-    \"require_code_owner_reviews\": false\r\n-  },\r\n-  \"restrictions\": null,\r\n-  \"allow_force_pushes\": false,\r\n-  \"allow_deletions\": false\r\n-} \n\\ No newline at end of file\n+ \n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1749928841213,
+            "name": "Commit-0",
+            "content": "{\r\n  \"required_status_checks\": {\r\n    \"strict\": true,\r\n    \"contexts\": [\"test\", \"security-audit\"]\r\n  },\r\n  \"enforce_admins\": true,\r\n  \"required_pull_request_reviews\": {\r\n    \"required_approving_review_count\": 1,\r\n    \"dismiss_stale_reviews\": true,\r\n    \"require_code_owner_reviews\": false\r\n  },\r\n  \"restrictions\": null,\r\n  \"allow_force_pushes\": false,\r\n  \"allow_deletions\": false\r\n} "
+        }
+    ]
+}

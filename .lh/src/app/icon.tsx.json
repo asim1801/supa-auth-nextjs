@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/app/icon.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1749928911251,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1749928911251,
+            "name": "Commit-0",
+            "content": "import { ImageResponse } from 'next/og'\r\n\r\n// Required for static export\r\nexport const dynamic = 'force-static'\r\n\r\n// Image metadata\r\nexport const size = {\r\n  width: 32,\r\n  height: 32,\r\n}\r\nexport const contentType = 'image/png'\r\n\r\n// Image generation\r\nexport default function Icon() {\r\n  return new ImageResponse(\r\n    (\r\n      // ImageResponse JSX element\r\n      <div\r\n        style={{\r\n          fontSize: 20,\r\n          background: 'linear-gradient(135deg, #0070f3 0%, #0051cc 100%)',\r\n          width: '100%',\r\n          height: '100%',\r\n          display: 'flex',\r\n          alignItems: 'center',\r\n          justifyContent: 'center',\r\n          color: 'white',\r\n          fontWeight: 'bold',\r\n          borderRadius: '6px',\r\n        }}\r\n      >\r\n        S\r\n      </div>\r\n    ),\r\n    // ImageResponse options\r\n    {\r\n      // For convenience, we can re-use the exported icons size metadata\r\n      // config to also set the ImageResponse's width and height.\r\n      ...size,\r\n    }\r\n  )\r\n} "
+        }
+    ]
+}
