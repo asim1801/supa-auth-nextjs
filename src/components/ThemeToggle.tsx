@@ -15,11 +15,6 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
   const [isDark, setIsDark] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Don't render if theme toggle is disabled
-  if (!enableToggle) {
-    return null;
-  }
-
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -39,6 +34,11 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
       }
     }
   }, [theme, mounted]);
+
+  // Don't render if theme toggle is disabled
+  if (!enableToggle) {
+    return null;
+  }
 
   // Prevent hydration mismatch
   if (!mounted) {
