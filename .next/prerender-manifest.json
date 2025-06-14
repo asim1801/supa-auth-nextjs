@@ -54,7 +54,7 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/invitations": {
+    "/create-organization": {
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -67,8 +67,8 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/invitations",
-      "dataRoute": "/invitations.rsc",
+      "srcRoute": "/create-organization",
+      "dataRoute": "/create-organization.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -102,6 +102,30 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/invitations": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/invitations",
+      "dataRoute": "/invitations.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/profile": {
       "experimentalBypassFor": [
         {
@@ -125,37 +149,13 @@
         "x-next-revalidated-tags",
         "x-next-revalidate-tag-token"
       ]
-    },
-    "/create-organization": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/create-organization",
-      "dataRoute": "/create-organization.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
     }
   },
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "3517114378d3fd0c08c07b8d3dbd2b9f",
-    "previewModeSigningKey": "069b9f71e4163ab9f082f3569b2696ab5920478cf1ab1c6ee700ac21c9d72c77",
-    "previewModeEncryptionKey": "3c7e920178194bd2e43b542c820b380a6fa46cf2c1e1b2cba557cb5837571b2b"
+    "previewModeId": "021028dc00f4018b7b1a1ee4ebbaf30d",
+    "previewModeSigningKey": "97fcca7f707317f50d6ef6c11dc845f0d080b7edfa10a999e5cc0180e60a71a0",
+    "previewModeEncryptionKey": "4771a9a3df9ae48218accfde726242b06ba370bfa6deb314efb70c0fcbfe056f"
   }
 }

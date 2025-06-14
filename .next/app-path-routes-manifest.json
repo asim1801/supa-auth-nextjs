@@ -1,9 +1,9 @@
 {
   "/icon/route": "/icon",
   "/_not-found/page": "/_not-found",
-  "/invitations/page": "/invitations",
-  "/page": "/",
   "/create-organization/page": "/create-organization",
-  "/profile/page": "/profile",
-  "/team-members/page": "/team-members"
+  "/invitations/page": "/invitations",
+  "/team-members/page": "/team-members",
+  "/page": "/",
+  "/profile/page": "/profile"
 }

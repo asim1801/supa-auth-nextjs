@@ -1,9 +1,7 @@
 {
   "version": 1,
   "config": {
-    "env": {
-      "customKey": "my-value"
-    },
+    "env": {},
     "webpack": null,
     "eslint": {
       "ignoreDuringBuilds": false
@@ -14,7 +12,7 @@
     },
     "distDir": ".next",
     "cleanDistDir": true,
-    "assetPrefix": "/supa-auth-nextjs/",
+    "assetPrefix": "",
     "cacheMaxMemorySize": 52428800,
     "configOrigin": "next.config.js",
     "useFileSystemPublicRoutes": true,
@@ -48,7 +46,7 @@
         256,
         384
       ],
-      "path": "/supa-auth-nextjs/_next/image/",
+      "path": "/_next/image/",
       "loader": "default",
       "loaderFile": "",
       "domains": [],
@@ -71,9 +69,9 @@
       "pagesBufferLength": 5
     },
     "amp": {
-      "canonicalBase": "/supa-auth-nextjs"
+      "canonicalBase": ""
     },
-    "basePath": "/supa-auth-nextjs",
+    "basePath": "",
     "sassOptions": {},
     "trailingSlash": true,
     "i18n": null,

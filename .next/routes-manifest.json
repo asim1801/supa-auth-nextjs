@@ -2,16 +2,8 @@
   "version": 3,
   "pages404": true,
   "caseSensitive": false,
-  "basePath": "/supa-auth-nextjs",
+  "basePath": "",
   "redirects": [
-    {
-      "source": "/supa-auth-nextjs",
-      "destination": "/supa-auth-nextjs/",
-      "basePath": false,
-      "internal": true,
-      "statusCode": 308,
-      "regex": "^/supa-auth-nextjs$"
-    },
     {
       "source": "/:file((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/]+\\.\\w+)/",
       "destination": "/:file",
@@ -96,15 +88,5 @@
     "pathHeader": "x-nextjs-rewritten-path",
     "queryHeader": "x-nextjs-rewritten-query"
   },
-  "rewrites": {
-    "beforeFiles": [
-      {
-        "source": "/supa-auth-nextjs//_next/:path+",
-        "destination": "/supa-auth-nextjs/_next/:path+",
-        "regex": "^/supa-auth-nextjs//_next(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))(?:/)?$"
-      }
-    ],
-    "afterFiles": [],
-    "fallback": []
-  }
+  "rewrites": []
 }

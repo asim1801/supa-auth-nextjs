@@ -21,7 +21,7 @@
       256,
       384
     ],
-    "path": "/supa-auth-nextjs/_next/image/",
+    "path": "/_next/image/",
     "loader": "default",
     "loaderFile": "",
     "domains": [],
