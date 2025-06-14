@@ -63,9 +63,9 @@ export class SecureEncryption {
 
   private static async getMasterKey(): Promise<string> {
     // In production, this should come from environment variables or HSM
-    const envKey = process.env.NEXT_PUBLIC_ENCRYPTION_KEY;
+    const envKey = process.env.ENCRYPTION_KEY;
     if (!envKey) {
-      throw new Error('Encryption key not configured. Please set NEXT_PUBLIC_ENCRYPTION_KEY environment variable.');
+      throw new Error('Encryption key not configured. Please set ENCRYPTION_KEY environment variable.');
     }
     return envKey;
   }

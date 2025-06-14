@@ -88,7 +88,7 @@ pnpm install
    ```env
    NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-   NEXT_PUBLIC_ENCRYPTION_KEY=your_secure_random_key_here
+   ENCRYPTION_KEY=your_secure_random_key_here
    ```
 
 ### 3. Run the Application
@@ -188,11 +188,7 @@ npm run build
 # Upload the 'out' folder to your hosting provider
 ```
 
-### Vercel Deployment
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/asim1801/supa-auth-nextjs)
 
-### Netlify Deployment
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/asim1801/supa-auth-nextjs)
 
 ## 🆘 Support
 

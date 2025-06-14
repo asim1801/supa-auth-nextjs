@@ -39,7 +39,8 @@ function updateEnvFile() {
       const encryptionKey = generateEncryptionKey();
       content = content.replace('your_secure_encryption_key_here', encryptionKey);
       fs.writeFileSync(envLocal, content);
-      console.log('✅ Generated encryption key');
+      console.log('✅ Generated secure server-side encryption key');
+      console.log('⚠️  SECURITY: Encryption key is now server-side only (no NEXT_PUBLIC_ prefix)');
     }
     
     // Check if Supabase credentials are still placeholders

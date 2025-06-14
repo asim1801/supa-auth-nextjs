@@ -19,10 +19,13 @@ const isRealConfig =
   !isPlaceholderUrl &&
   !isPlaceholderKey
 
-console.log('Supabase initialization:', {
-  url: isRealConfig ? 'Present' : 'Using demo mode',
-  key: isRealConfig ? 'Present' : 'Using demo mode'
-});
+// Only log in development mode and don't expose sensitive data
+if (process.env.NODE_ENV === 'development') {
+  console.log('Supabase initialization:', {
+    url: isRealConfig ? 'Configured' : 'Using demo mode',
+    key: isRealConfig ? 'Configured' : 'Using demo mode'
+  });
+}
 
 // Create client with proper error handling
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {

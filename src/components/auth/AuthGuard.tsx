@@ -30,7 +30,9 @@ export function AuthGuard({
     // Redirect if auth is required but user is not signed in
     if (requireAuth && !isSignedIn) {
       const redirectPath = fallbackPath || authConfig.auth.redirectAfterSignOut;
-      router.push(`${redirectPath}?from=${encodeURIComponent(pathname || '')}`);
+      // Properly sanitize the redirect URL to prevent open redirect attacks
+      const sanitizedFrom = pathname && pathname.startsWith('/') ? pathname : '/';
+      router.push(`${redirectPath}?from=${encodeURIComponent(sanitizedFrom)}`);
       return;
     }
 
