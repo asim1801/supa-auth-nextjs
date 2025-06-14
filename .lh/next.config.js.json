@@ -1,0 +1,22 @@
+{
+    "sourceFile": "next.config.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1749927432988,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1749928724065,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,18 @@\n /** @type {import('next').NextConfig} */\r\n const nextConfig = {\r\n+  output: 'export',\r\n+  trailingSlash: true,\r\n   images: {\r\n-    domains: [],\r\n+    unoptimized: true,\r\n   },\r\n+  basePath: process.env.NODE_ENV === 'production' ? '/supa-auth-nextjs' : '',\r\n+  assetPrefix: process.env.NODE_ENV === 'production' ? '/supa-auth-nextjs/' : '',\r\n+  env: {\r\n+    customKey: 'my-value',\r\n+  },\r\n+  experimental: {\r\n+    optimizePackageImports: ['lucide-react'],\r\n+  },\r\n }\r\n \r\n module.exports = nextConfig \n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1749927432988,
+            "name": "Commit-0",
+            "content": "/** @type {import('next').NextConfig} */\r\nconst nextConfig = {\r\n  images: {\r\n    domains: [],\r\n  },\r\n}\r\n\r\nmodule.exports = nextConfig "
+        }
+    ]
+}
