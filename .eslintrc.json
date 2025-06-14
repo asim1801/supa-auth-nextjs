@@ -3,6 +3,13 @@
     "next/core-web-vitals"
   ],
   "rules": {
-    "react/no-unescaped-entities": "off"
+    "react/no-unescaped-entities": "off",
+    // General code quality
+    "prefer-const": "error",
+    "no-var": "error",
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "eqeqeq": ["error", "always"],
+    // React specific
+    "react-hooks/exhaustive-deps": "error"
   }
 } 

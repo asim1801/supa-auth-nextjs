@@ -29,7 +29,7 @@ export function ProfileCard({
 }: ProfileCardProps) {
   const initials = user.fullName
     ? user.fullName.split(' ').map(n => n[0]).join('').toUpperCase()
-    : user.email[0].toUpperCase();
+    : 'U';
 
   const joinDate = new Date(user.createdAt).toLocaleDateString('en-US', {
     year: 'numeric',

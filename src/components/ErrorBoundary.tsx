@@ -12,7 +12,7 @@ interface Props {
 
 interface State {
   hasError: boolean;
-  error?: Error;
+  error?: Error | undefined;
 }
 
 export class ErrorBoundary extends Component<Props, State> {
@@ -24,11 +24,11 @@ export class ErrorBoundary extends Component<Props, State> {
     return { hasError: true, error };
   }
 
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  public override componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('Uncaught error:', error, errorInfo);
   }
 
-  public render() {
+  public override render() {
     if (this.state.hasError) {
       return (
         <div className="min-h-screen flex items-center justify-center p-4">
@@ -50,7 +50,7 @@ export class ErrorBoundary extends Component<Props, State> {
                 Refresh Page
               </Button>
               <Button 
-                onClick={() => this.setState({ hasError: false, error: undefined })} 
+                onClick={() => this.setState({ hasError: false })} 
                 variant="outline" 
                 className="w-full"
               >

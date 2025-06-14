@@ -25,12 +25,20 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
     "setup": "node scripts/setup.js",
     "migrate": "npx supabase db push",
     "db:generate-types": "npx supabase gen types typescript --local > src/types/database.types.ts",
+    "db:reset": "npx supabase db reset",
     "export": "next build && next export",
     "deploy": "npm run build && gh-pages -d out",
     "predeploy": "npm run build",
+    "security:audit": "npm audit --audit-level=moderate",
+    "security:fix": "npm audit fix",
+    "deps:check": "npx npm-check-updates",
+    "deps:update": "npx npm-check-updates -u && npm install",
+    "analyze": "cross-env ANALYZE=true npm run build",
     "postinstall": "echo '✅ Installation complete! Run npm run dev to start the development server.'"
   },
   "dependencies": {
@@ -70,6 +78,7 @@
     "crypto-js": "^4.2.0",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.0",
+    "framer-motion": "^12.18.1",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.462.0",
     "next": "^15.0.0",
@@ -89,15 +98,19 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
+    "@types/crypto-js": "^4.2.2",
     "@types/node": "^22.5.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1",
     "eslint": "^9.9.0",
     "eslint-config-next": "^15.0.0",
     "gh-pages": "^6.3.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.11",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.3",
+    "web-vitals": "^3.5.0"
   }
 }

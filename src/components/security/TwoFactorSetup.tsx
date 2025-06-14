@@ -11,6 +11,7 @@ import { Progress } from '@/components/ui/progress';
 import { Shield, Copy, Check, Download, AlertTriangle, Smartphone } from 'lucide-react';
 import { useAdvancedAuth } from '@/hooks/useAdvancedAuth';
 import { useToast } from '@/hooks/use-toast';
+import Image from 'next/image';
 
 export function TwoFactorSetup() {
   const [verificationCode, setVerificationCode] = useState('');
@@ -130,7 +131,7 @@ export function TwoFactorSetup() {
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="text-center space-y-4">
-            <img
+            <Image
               src={twoFactorSetup.qrCodeUrl}
               alt="2FA QR Code"
               className="mx-auto border rounded-lg p-4 bg-white"

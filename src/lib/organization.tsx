@@ -1,4 +1,3 @@
-
 'use client'
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
@@ -60,15 +59,7 @@ export function OrganizationProvider({ children }: { children: React.ReactNode }
   const [members, setMembers] = useState<OrganizationMember[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    if (isLoaded && user) {
-      refreshOrganizations();
-    } else if (isLoaded) {
-      setIsLoading(false);
-    }
-  }, [user, isLoaded]);
-
-  const refreshOrganizations = async () => {
+  const refreshOrganizations = React.useCallback(async () => {
     if (!user || !isSupabaseConfigured()) {
       setIsLoading(false);
       return;
@@ -137,16 +128,65 @@ export function OrganizationProvider({ children }: { children: React.ReactNode }
       if (currentOrg) {
         setCurrentOrganization(currentOrg);
         localStorage.setItem('currentOrganizationId', currentOrg.id);
-        await refreshMembers(currentOrg.id);
+        // Call refreshMembers inline to avoid circular dependency
+        if (isSupabaseConfigured()) {
+          try {
+            const { data: memberData, error } = await supabase
+              .from('organization_members')
+              .select(`
+                id,
+                user_id,
+                organization_id,
+                role,
+                status,
+                created_at,
+                profiles (
+                  id,
+                  email,
+                  full_name,
+                  avatar_url
+                )
+              `)
+              .eq('organization_id', currentOrg.id)
+              .eq('status', 'active');
+
+            if (!error && memberData) {
+              const formattedMembers: OrganizationMember[] = [];
+              for (const member of memberData) {
+                const profileData = Array.isArray(member.profiles) 
+                  ? member.profiles[0] 
+                  : member.profiles;
+
+                formattedMembers.push({
+                  id: member.id,
+                  userId: member.user_id,
+                  organizationId: member.organization_id,
+                  role: member.role,
+                  status: member.status,
+                  joinedAt: member.created_at,
+                  user: profileData ? {
+                    id: profileData.id,
+                    email: profileData.email,
+                    fullName: profileData.full_name || undefined,
+                    avatarUrl: profileData.avatar_url || undefined,
+                  } : undefined
+                });
+              }
+              setMembers(formattedMembers);
+            }
+          } catch (memberError) {
+            console.error('Error loading members:', memberError);
+          }
+        }
       }
     } catch (error) {
       console.error('Error loading organizations:', error);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [user]);
 
-  const refreshMembers = async (orgId?: string) => {
+  const refreshMembers = React.useCallback(async (orgId?: string) => {
     const organizationId = orgId || currentOrganization?.id;
     if (!organizationId || !isSupabaseConfigured()) return;
 
@@ -204,7 +244,15 @@ export function OrganizationProvider({ children }: { children: React.ReactNode }
     } catch (error) {
       console.error('Error loading members:', error);
     }
-  };
+  }, [currentOrganization?.id]);
+
+  useEffect(() => {
+    if (isLoaded && user) {
+      refreshOrganizations();
+    } else if (isLoaded) {
+      setIsLoading(false);
+    }
+  }, [user, isLoaded, refreshOrganizations]);
 
   const switchOrganization = (organizationId: string) => {
     const org = organizations.find(o => o.id === organizationId);

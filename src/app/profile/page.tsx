@@ -18,11 +18,11 @@ export default function ProfilePage() {
     avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
     emailVerified: true,
     createdAt: '2024-01-15T10:30:00Z'
-  };
+  } as const;
 
   const initials = demoUser.fullName
     ? demoUser.fullName.split(' ').map(n => n[0]).join('').toUpperCase()
-    : demoUser.email[0].toUpperCase();
+    : 'DU';
 
   return (
     <DashboardLayout>

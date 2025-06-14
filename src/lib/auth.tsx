@@ -72,7 +72,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        console.log('Auth state change:', event, session?.user?.email);
         if (session?.user) {
           await loadUser(session.user);
         } else {
@@ -98,7 +97,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         email: supabaseUser.email!,
         fullName: profile?.full_name || null,
         avatarUrl: profile?.avatar_url || null,
-        emailVerified: supabaseUser.email_confirmed_at != null,
+        emailVerified: supabaseUser.email_confirmed_at !== null,
         createdAt: supabaseUser.created_at,
       });
     } catch (error) {

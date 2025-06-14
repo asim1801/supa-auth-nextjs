@@ -22,7 +22,7 @@ export function AvatarUpload({ user }: AvatarUploadProps) {
 
   const initials = user.fullName
     ? user.fullName.split(' ').map(n => n[0]).join('').toUpperCase()
-    : user.email[0].toUpperCase();
+    : 'U';
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

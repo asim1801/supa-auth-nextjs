@@ -21,6 +21,7 @@ const isRealConfig =
 
 // Only log in development mode and don't expose sensitive data
 if (process.env.NODE_ENV === 'development') {
+  // eslint-disable-next-line no-console
   console.log('Supabase initialization:', {
     url: isRealConfig ? 'Configured' : 'Using demo mode',
     key: isRealConfig ? 'Configured' : 'Using demo mode'
@@ -41,6 +42,7 @@ export const isSupabaseConfigured = () => {
   return isRealConfig && supabaseUrl.includes('supabase.co');
 };
 
+// eslint-disable-next-line no-console
 console.log('Supabase client created:', isSupabaseConfigured() ? 'with real credentials' : 'in demo mode');
 
 // Database types

@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useCallback } from 'react';
 
 interface CacheItem<T> {
@@ -17,6 +16,12 @@ export function useAuthCache() {
     size: 0
   });
 
+  const updateCacheStats = useCallback(() => {
+    const keys = Object.keys(localStorage);
+    const cacheKeys = keys.filter(key => key.startsWith(CACHE_PREFIX));
+    setCacheStats(prev => ({ ...prev, size: cacheKeys.length }));
+  }, []);
+
   const setCache = useCallback(<T>(key: string, data: T, ttl: number = DEFAULT_TTL) => {
     const cacheKey = `${CACHE_PREFIX}${key}`;
     const item: CacheItem<T> = {
@@ -31,7 +36,7 @@ export function useAuthCache() {
     } catch (error) {
       console.warn('Failed to set cache:', error);
     }
-  }, []);
+  }, [updateCacheStats]);
 
   const getCache = useCallback(<T>(key: string): T | null => {
     const cacheKey = `${CACHE_PREFIX}${key}`;
@@ -65,7 +70,7 @@ export function useAuthCache() {
     const cacheKey = `${CACHE_PREFIX}${key}`;
     localStorage.removeItem(cacheKey);
     updateCacheStats();
-  }, []);
+  }, [updateCacheStats]);
 
   const clearAllCache = useCallback(() => {
     const keys = Object.keys(localStorage);
@@ -75,13 +80,7 @@ export function useAuthCache() {
       }
     });
     updateCacheStats();
-  }, []);
-
-  const updateCacheStats = useCallback(() => {
-    const keys = Object.keys(localStorage);
-    const cacheKeys = keys.filter(key => key.startsWith(CACHE_PREFIX));
-    setCacheStats(prev => ({ ...prev, size: cacheKeys.length }));
-  }, []);
+  }, [updateCacheStats]);
 
   useEffect(() => {
     updateCacheStats();

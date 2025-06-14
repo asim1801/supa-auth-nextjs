@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Features } from '@/components/Features';
+import PowerFeatures from '@/components/PowerFeatures';
 import { 
   Shield, 
   Users, 
@@ -16,20 +17,14 @@ import {
   Lock,
   Zap,
   Star,
-  CheckCircle
+  CheckCircle,
+  Layout
 } from 'lucide-react';
 
 export default function HomePage() {
   const techStack = [
     'Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS', 'shadcn/ui', 
     'Supabase', 'React Query', 'React Hook Form', 'Zod', 'MIT License'
-  ];
-
-  const stats = [
-    { value: '10k+', label: 'Developers' },
-    { value: '99.9%', label: 'Uptime' },
-    { value: '50ms', label: 'Response Time' },
-    { value: '24/7', label: 'Support' }
   ];
 
   const features = [
@@ -55,18 +50,13 @@ export default function HomePage() {
           </div>
           <div className="flex items-center space-x-4">
             <ThemeToggle />
-            <a 
-              href="https://github.com/asim1801/supa-auth-nextjs" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex"
-            >
+            <Link href="/components-gallery">
               <Button variant="outline" size="sm" className="hover:scale-105 transition-transform">
-                <Github className="mr-2 h-4 w-4" />
-                GitHub
+                <Layout className="mr-2 h-4 w-4" />
+                Components Gallery
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -132,18 +122,6 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 animate-fade-in delay-700">
-              {stats.map((stat, index) => (
-                <Card key={stat.label} className="text-center hover:scale-105 transition-transform border-0 bg-muted/20 backdrop-blur-sm">
-                  <CardContent className="p-6">
-                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.value}</div>
-                    <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
             {/* Tech Stack */}
             <div className="text-center space-y-6 animate-fade-in delay-1000">
               <h3 className="text-lg font-semibold text-muted-foreground">Built with modern technologies</h3>
@@ -162,61 +140,7 @@ export default function HomePage() {
       {/* Features Section */}
       <Features />
 
-      {/* Quick Demo Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto text-center space-y-12">
-          <div>
-            <h2 className="text-4xl font-bold mb-6">Experience the Power</h2>
-            <p className="text-xl text-muted-foreground">
-              Explore our comprehensive authentication system in action.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-3 gap-6">
-            <Link href="/profile">
-              <Card className="hover:shadow-lg transition-all duration-300 cursor-pointer group hover:scale-105">
-                <CardContent className="p-8 text-center space-y-4">
-                  <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <Settings className="h-8 w-8 text-primary group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg">User Profiles</h3>
-                    <p className="text-muted-foreground">Complete user management</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-
-            <Link href="/team-members">
-              <Card className="hover:shadow-lg transition-all duration-300 cursor-pointer group hover:scale-105">
-                <CardContent className="p-8 text-center space-y-4">
-                  <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <Users className="h-8 w-8 text-primary group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg">Team Management</h3>
-                    <p className="text-muted-foreground">Collaborate seamlessly</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-
-            <Link href="/invitations">
-              <Card className="hover:shadow-lg transition-all duration-300 cursor-pointer group hover:scale-105">
-                <CardContent className="p-8 text-center space-y-4">
-                  <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <Globe className="h-8 w-8 text-primary group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg">Team Invitations</h3>
-                    <p className="text-muted-foreground">Manage team access</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <PowerFeatures />
 
       {/* Footer */}
       <footer className="border-t bg-muted/30">
@@ -230,9 +154,7 @@ export default function HomePage() {
               Free & Open Source - Built with ❤️ for the developer community
             </p>
             <div className="flex justify-center space-x-6 text-sm text-muted-foreground">
-              <a href="#" className="hover:text-foreground transition-colors">Privacy</a>
-              <a href="#" className="hover:text-foreground transition-colors">Terms</a>
-              <a href="#" className="hover:text-foreground transition-colors">Support</a>
+              <Link href="https://github.com/asim1801/supa-auth-nextjs/issues" target="_blank" className="hover:text-foreground transition-colors">Support</Link>
             </div>
           </div>
         </div>

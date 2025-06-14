@@ -20,7 +20,7 @@ export function UserButton() {
 
   const initials = user.fullName
     ? user.fullName.split(' ').map(n => n[0]).join('').toUpperCase()
-    : user.email[0].toUpperCase();
+    : 'U';
 
   return (
     <DropdownMenu>

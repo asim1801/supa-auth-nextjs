@@ -1,4 +1,3 @@
-
 import { supabase, isSupabaseConfigured } from './supabase';
 import type { User } from '@supabase/supabase-js';
 import { authConfig } from '@/config/auth';
@@ -70,7 +69,7 @@ class AuthMiddleware {
   private async runMiddlewares(context: MiddlewareContext, index: number) {
     if (index >= this.middlewares.length) return;
 
-    const middleware = this.middlewares[index];
+    const middleware = this.middlewares[index]!;
     const next = () => this.runMiddlewares(context, index + 1);
 
     await middleware(context, next);
@@ -267,7 +266,6 @@ export const realtimeMiddleware: MiddlewareFunction = (context, next) => {
         filter: `user_id=eq.${context.user?.id}` 
       }, 
       (payload) => {
-        console.log('Organization membership changed:', payload);
         // Trigger a context refresh or emit event
         window.dispatchEvent(new CustomEvent('membership-changed', { detail: payload }));
       }
