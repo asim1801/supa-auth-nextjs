@@ -1,0 +1,18 @@
+{
+    "sourceFile": ".github/workflows/ci-cd.yml",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1749928740352,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1749928740352,
+            "name": "Commit-0",
+            "content": "name: CI/CD Pipeline\r\n\r\non:\r\n  push:\r\n    branches: [main, develop]\r\n  pull_request:\r\n    branches: [main]\r\n\r\njobs:\r\n  test:\r\n    runs-on: ubuntu-latest\r\n    strategy:\r\n      matrix:\r\n        node-version: [18.x, 20.x]\r\n\r\n    steps:\r\n      - name: Checkout repository\r\n        uses: actions/checkout@v4\r\n\r\n      - name: Setup Node.js ${{ matrix.node-version }}\r\n        uses: actions/setup-node@v4\r\n        with:\r\n          node-version: ${{ matrix.node-version }}\r\n          cache: 'npm'\r\n\r\n      - name: Install dependencies\r\n        run: npm ci\r\n\r\n      - name: Run linter\r\n        run: npm run lint\r\n\r\n      - name: Build application\r\n        run: npm run build\r\n\r\n  deploy:\r\n    needs: test\r\n    runs-on: ubuntu-latest\r\n    if: github.ref == 'refs/heads/main' && github.event_name == 'push'\r\n\r\n    steps:\r\n      - name: Checkout repository\r\n        uses: actions/checkout@v4\r\n\r\n      - name: Setup Node.js\r\n        uses: actions/setup-node@v4\r\n        with:\r\n          node-version: '20.x'\r\n          cache: 'npm'\r\n\r\n      - name: Install dependencies\r\n        run: npm ci\r\n\r\n      - name: Build and Export\r\n        run: npm run build\r\n\r\n      - name: Deploy to GitHub Pages\r\n        uses: peaceiris/actions-gh-pages@v3\r\n        with:\r\n          github_token: ${{ secrets.GITHUB_TOKEN }}\r\n          publish_dir: ./out\r\n          cname: # Add your custom domain here if you have one\r\n\r\n  security-audit:\r\n    runs-on: ubuntu-latest\r\n    steps:\r\n      - name: Checkout repository\r\n        uses: actions/checkout@v4\r\n\r\n      - name: Setup Node.js\r\n        uses: actions/setup-node@v4\r\n        with:\r\n          node-version: '20.x'\r\n          cache: 'npm'\r\n\r\n      - name: Install dependencies\r\n        run: npm ci\r\n\r\n      - name: Run security audit\r\n        run: npm audit --audit-level high\r\n\r\n      - name: Check for vulnerabilities\r\n        run: npm audit --audit-level moderate --audit-level high "
+        }
+    ]
+}
